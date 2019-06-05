@@ -1,0 +1,23 @@
+<root>
+<SourceSystem Name="MySQL">
+	<Entity Name="Account">
+	<SQL>SELECT * FROM account</SQL>
+		<Attribute SourceType="String" TargetType="String" SourceName="Name" TargetName="Acc_Name">Account Name</Attribute>
+		<Attribute SourceType="String" TargetType="String" SourceName="Account" TargetName="account_id">Account ID</Attribute>
+		<Attribute SourceType="INT" TargetType="String" SourceName="Updated" TargetName="Updated_Date">Date</Attribute>
+		<ChildEntity Name="Contact">
+		<sql_query>SELECT first_name,last_name FROM contact where account =  group by account id</sql_query>
+			<Attribute SiebelType="String" TargetType="String" SourceName="F_N" TargetName="F_N">First Name</Attribute>
+			<Attribute SiebelType="String" TargetType="String" SourceName="L_N" TargetName="L_N">Last Name</Attribute>
+			<Attribute SiebelType="INT" TargetType="INT" SourceName="Phone" TargetName="Phone">Phone Number</Attribute>
+		</ChildEntity>
+		<ChildEntity Name="Address">
+		<sql_query>SELECT a.city, a.state, b.country, b.address_code FROM address a, address b WHERE a.address_code = b.address_code </sql_query>
+			<Attribute SiebelType="String" TargetType="String" SourceName="City" TargetName="City">City</Attribute>
+			<Attribute SiebelType="String" TargetType="String" SourceName="State" TargetName="State">State</Attribute>
+			<Attribute SiebelType="String" TargetType="String" SourceName="Country" TargetName="Country">Country</Attribute>
+			<Attribute SiebelType="String" TargetType="String" SourceName="Address_Code" TargetName="Address_Code">Pin Code</Attribute>
+		</ChildEntity>
+	</Entity>
+</SourceSystem>	
+</root>
